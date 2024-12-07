@@ -28,11 +28,24 @@ func (c *Config) makeUI() (*widget.Entry, *widget.RichText) {
 	return entry, preview
 }
 
+func (c *Config) makeMenu(w fyne.Window) {
+
+	var openFile = fyne.NewMenuItem("Open File", func() {})
+	var saveFile = fyne.NewMenuItem("Save", func() {})
+	var saveAsFile = fyne.NewMenuItem("Save as...", func() {})
+
+	var fileMenu = fyne.NewMenu("File", openFile, saveFile, saveAsFile)
+	var mainMenu = fyne.NewMainMenu(fileMenu)
+
+	w.SetMainMenu(mainMenu)
+}
+
 func main() {
 	var _app = app.New()
 	var win = _app.NewWindow("Markdown Editor")
 
 	var entry, preview = cfg.makeUI()
+	cfg.makeMenu(win)
 
 	win.SetContent(container.NewHSplit(entry, preview))
 	win.Resize(fyne.Size{Width: 600, Height: 500})
