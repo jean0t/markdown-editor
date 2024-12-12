@@ -24,6 +24,7 @@ var filter storage.FileFilter = storage.NewExtensionFileFilter([]string{".md", "
 
 var cfg Config
 
+// the beautiful design comes majority from here
 func (c *Config) makeUI() (*widget.Entry, *widget.RichText) {
 	var entry = widget.NewMultiLineEntry()
 	var preview = widget.NewRichTextFromMarkdown("")
@@ -34,6 +35,7 @@ func (c *Config) makeUI() (*widget.Entry, *widget.RichText) {
 	return entry, preview
 }
 
+// you know the buttons you click? yeah, that makes it
 func (c *Config) makeMenu(w fyne.Window) {
 
 	var openFile = fyne.NewMenuItem("Open File", c.openFile(w))
@@ -127,6 +129,8 @@ func (c *Config) save(w fyne.Window) func() {
 	}
 }
 
+
+// time to make the masterpiece work for real, baby
 func main() {
 	var _app = app.New()
 	var win = _app.NewWindow("Markdown Editor")
