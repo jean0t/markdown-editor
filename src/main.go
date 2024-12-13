@@ -137,6 +137,7 @@ func main() {
 
 	var entry, preview = cfg.makeUI()
 	cfg.makeMenu(win)
+	var richTextContainer = container.NewScroll(preview) // don't grow too much buddy
 
 	entry.OnChanged = func(content string) {
 		preview.ParseMarkdown(content)
@@ -148,8 +149,7 @@ func main() {
 		}
 	}
 
-
-	win.SetContent(container.NewHSplit(entry, preview))
+	win.SetContent(container.NewHSplit(entry, richTextContainer))
 	win.Resize(fyne.Size{Width: 600, Height: 500})
 	win.CenterOnScreen()
 	win.ShowAndRun()
